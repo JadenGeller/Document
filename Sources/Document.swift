@@ -66,6 +66,16 @@ extension Document.Index: ForwardIndexType {
             )
         }
     }
+    
+    public func breakLine() -> Document.Index {
+        let nextLine = line.successor()
+        return Document.Index(
+            document: document,
+            line: line.successor(),
+            column: nextLine < document.lines.endIndex && !document.lines[nextLine].isEmpty ?
+                document.lines[nextLine].startIndex : nil
+        )
+    }
 }
 
 public func ==(lhs: Document.Index, rhs: Document.Index) -> Bool {
@@ -123,5 +133,11 @@ extension Document: StringLiteralConvertible {
     
     public init(stringLiteral value: String) {
         self.init(value)
+    }
+}
+
+extension Document.Index {
+    public func samePositionIn(line: String) -> String.CharacterView.Index? {
+        return column
     }
 }

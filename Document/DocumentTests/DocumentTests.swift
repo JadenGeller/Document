@@ -16,4 +16,9 @@ class DocumentTests: XCTestCase {
         let document = Document(string)
         XCTAssertEqual(string, String(document))
     }
+    
+    func testBreakLine() {
+        let document = Document("abc\ndef\n")
+        XCTAssertEqual("d", document[document.startIndex.breakLine()])
+    }
 }
