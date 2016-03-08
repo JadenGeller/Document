@@ -5,4 +5,5 @@
 ```swift
 let doc = Document("Hello world!\nand all who inhabit it\n")
 print(doc.lines[1]) // -> and all who inhabit it
+print(doc[doc.startIndex.breakLine().successor()]) // -> n
 ```
